@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For My Pondatii ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  color:white;
+  text-align:center;
+  overflow:hidden;
+  transition:0.5s;
+}
+
+.page{
+  display:none;
+  height:100vh;
+  padding:40px 25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+h1{
+  font-size:38px;
+  margin-bottom:20px;
+}
+
+p{
+  font-size:22px;
+  max-width:650px;
+  line-height:1.7;
+}
+
+.quote{
+  font-size:20px;
+  margin-top:20px;
+  font-style:italic;
+  opacity:0.9;
+}
+
+button{
+  padding:12px 25px;
+  font-size:17px;
+  border:none;
+  border-radius:30px;
+  margin:12px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.happy{ background:#ff4e88; color:white; }
+.angry{ background:#333; color:white; }
+.openBtn{ background:white; color:#ff4e88; }
+
+button:hover{ transform:scale(1.05); }
+
+.shake{
+  animation:shake 0.4s;
+}
+@keyframes shake{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-6px);}
+  50%{transform:translateX(6px);}
+  75%{transform:translateX(-6px);}
+  100%{transform:translateX(0);}
+}
+
+.heart{
+  position:fixed;
+  color:red;
+  animation:fall 3s linear infinite;
+}
+@keyframes fall{
+  0%{top:-10%;opacity:1;}
+  100%{top:100%;opacity:0;}
+}
+
+.bigLove{
+  font-size:28px;
+  margin-top:25px;
+}
+
+</style>
+</head>
+<body>
+
+<audio id="bgm" loop>
+  <source src="nee-kavithaigala.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let current=1;
+
+function showPage(n){
+  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+  document.getElementById("page"+n).style.display="flex";
+  current=n;
+}
+
+function nextPage(){
+  if(current<15){
+    showPage(current+1);
+  }
+}
+
+function start(){
+  document.getElementById("bgm").volume=0.4;
+  document.getElementById("bgm").play();
+  nextPage();
+}
+
+function angry(id){
+  document.body.classList.add("shake");
+  setTimeout(()=>document.body.classList.remove("shake"),400);
+  document.getElementById(id).innerHTML="😭 Please dii… one chance kuduu...";
+}
+
+function forgiveFinal(){
+  document.getElementById("bgm").volume=1.0;
+  showPage(15);
+  setInterval(createHeart,300);
+}
+
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),3000);
+}
+
+window.onload=function(){showPage(1);}
+</script>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+<h1>😔 Naa Thappu Panniten</h1>
+<button class="openBtn" onclick="start()">Open pannalama?</button>
+</div>
+
+<!-- MESSAGE PAGES 2-14 -->
+
+<script>
+const msgs=[
+["Unaku already pudikala nu therinjirundhum naan photo poten...","\"Love na secure feel panna vaikanum, doubt create panna koodadhu.\""],
+["Antha ponnu en ex illa di… munnadiye ex. Ippo just bestie dhaan.","\"Past mudinjiduchu… future la nee dhaan.\""],
+["Aana unaku hurt aagiradhu naan purinjukala.","\"Understanding late aanaalum, feeling real dhaan.\""],
+["Un kovam la jealousy illa… importance dhaan.","\"Possessiveness na love oda shadow.\""],
+["Un silence dhaan enaku bayam.","\"Un voice illama en world mute maari.\""],
+["Un sirippu dhaan en happiness.","\"Nee siricha dhaan en day start aagum.\""],
+["Unaku insecure feel panna vaika maaten.","\"Love na protect panna vendiyadhu.\""],
+["Un possessiveness enaku pidikum di.","\"Enna lose panna bayapadra alavu love pannra.\""],
+["Nee enna vida maata nu nambanum.","\"Trust na daily build pannara bridge.\""],
+["Nee dhaan en priority.","\"World la neraya per iruka… aana nee dhaan en choice.\""],
+["Temporary illa… permanent dhaan.","\"Forever nu sonna adhu nee kooda dhaan.\""],
+["Un heart la naan safe place aaganum.","\"Un kai pidicha varaikum naan strong.\""],
+["Ippo sollu… naan worth ah?","\"One chance kudutha… life full ah prove pannuren.\""]
+];
+
+for(let i=0;i<msgs.length;i++){
+document.write(`
+<div class="page" id="page${i+2}">
+<p>${msgs[i][0]}</p>
+<div class="quote">${msgs[i][1]}</div>
+<button class="happy" onclick="nextPage()">😊 Parava Illa</button>
+<button class="angry" onclick="angry('res${i}')">😡 Innum Kovam</button>
+<div id="res${i}" class="bigLove"></div>
+</div>
+`);
+}
+</script>
+
+<!-- FINAL PAGE 15 -->
+<div class="page" id="page15">
+<h1>💖 Love you dii pondatii ❤️‍🩹</h1>
+<p>Un possessiveness enaku pidikum…  
+Ana unaku insecure feel panna vaika maaten.</p>
+<div class="bigLove">🥰</div>
+</div>
+
+</body>
+</html>
